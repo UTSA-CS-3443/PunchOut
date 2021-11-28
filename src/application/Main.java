@@ -29,6 +29,7 @@ public class Main extends Application {
 			primaryStage.setScene( scenes );
 			primaryStage.show();
 			//asd
+			//test
 			/* Commented out BorderPane Launch
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root,400,400);
