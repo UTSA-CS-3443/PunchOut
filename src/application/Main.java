@@ -4,8 +4,10 @@ import application.controller.BaseController;
 import application.controller.TitleScreenController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 
@@ -16,6 +18,18 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
+			//testing my fxml docs
+			AnchorPane roots = new AnchorPane();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation( Main.class.getResource("view/MainMenu.fxml"));
+			roots = (AnchorPane) loader.load();
+			
+			Scene scenes = new Scene( roots );
+			primaryStage.setScene( scenes );
+			primaryStage.show();
+			
+			/* Commented out BorderPane Launch
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

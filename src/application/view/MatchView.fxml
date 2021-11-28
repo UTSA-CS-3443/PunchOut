@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="MatchViewPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MatchViewController">
+   <children>
+      <ProgressBar layoutX="453.0" layoutY="67.0" prefHeight="27.0" prefWidth="131.0" progress="0.0" />
+      <ProgressBar layoutX="210.0" layoutY="67.0" prefHeight="27.0" prefWidth="131.0" progress="0.0" />
+      <ImageView fitHeight="162.0" fitWidth="65.0" layoutX="250.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="162.0" fitWidth="65.0" layoutX="421.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="352.0" layoutY="130.0" mnemonicParsing="false" text="FIGHT">
+         <font>
+            <Font name="Elephant" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="680.0" layoutY="67.0" text="1:00">
+         <font>
+            <Font name="Elephant" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
