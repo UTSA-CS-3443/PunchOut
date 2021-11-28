@@ -1,7 +1,6 @@
 package application;
 	
 import application.controller.BaseController;
-import application.controller.SaveScoreController;
 import application.controller.TitleScreenController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -9,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 
@@ -16,7 +16,7 @@ public class Main extends Application {
 	
 	private static Stage stage;
 	
-	private BaseController activeController = new SaveScoreController();
+	private BaseController activeController = new TitleScreenController();
 	
 	/**
 	 * Static method that shows the given scene on the main stage
@@ -37,7 +37,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			stage = primaryStage;
-			Parent root = FXMLLoader.load(getClass().getResource("view/save_score_view.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
 			Scene scene = new Scene(root,800,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
