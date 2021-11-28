@@ -5,6 +5,7 @@ package application.controller;
 
 import application.Main;
 import application.model.PersistentStorageSingleton;
+import application.model.ScoreData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -18,9 +19,6 @@ public class SaveScoreController extends BaseController {
 	TextField usernameField;
 	
 	@FXML
-	TextField scoreField;
-	
-	@FXML
 	Button saveButton;
 
 	@Override
@@ -30,13 +28,12 @@ public class SaveScoreController extends BaseController {
 	
 	public void onSaveScore() {
 		
-		PersistentStorageSingleton storage = PersistentStorageSingleton.getInstance();
+		int mockScore = 100;
+		String mockTime = "1:20";
 		
-		try {
-			storage.saveScore(usernameField.getText(), Integer.parseInt(scoreField.getText()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		ScoreData score = new ScoreData(usernameField.getText(), mockScore, mockTime);
+		
+		score.saveToPersistentStorage();
 		
 		
 	}

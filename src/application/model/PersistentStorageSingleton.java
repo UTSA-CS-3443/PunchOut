@@ -5,14 +5,20 @@ package application.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * @author cassidybaskerville
  */
 public final class PersistentStorageSingleton {
 	
-	private final String highScoresFile = "high_scores.csv";
+	private static final String dataFolder = "src/data";
+	
+	private static final String highScoresFile = "high_scores.csv";
 	
 	private PersistentStorageSingleton() {}
 	
@@ -27,22 +33,42 @@ public final class PersistentStorageSingleton {
 	
 	/**
 	 * Saves your score to a csv file
-	 * @param username of player
-	 * @param score of player
+	 * @param score of the user
 	 */
-	public void saveScore(String username, int score) {
-		System.out.printf("Saving score for %s\n", username);
+	public void saveScore(ScoreData score) {
 		
-		File csvFile = new File(highScoresFile);
-		
+		File csvFile = new File(String.format("%s/%s", dataFolder, highScoresFile));
+
 		try {
-			PrintWriter out = new PrintWriter(csvFile);
+
+			PrintWriter out = new PrintWriter(new FileOutputStream(csvFile, true));
 			
-			out.format("%s,%d", username, score);
+			out.write("\n" + score.getData());
 			
 			out.close();
+			System.out.printf("Saved score for %s\n", score.getUsername());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @returns List of all high scores
+	 */
+	public List<ScoreData> getScores() {
+		
+		File csvFile = new File(String.format("%s/%s", dataFolder, highScoresFile));
+		
+		try {
+			Scanner sc = new Scanner(csvFile);
+			sc.useDelimiter("\n");
+			List<ScoreData> scores = sc.tokens().map(ScoreData::new).collect(Collectors.toList());
+			sc.close();
+			return scores;
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			return List.of();
 		}
 	}
 }
