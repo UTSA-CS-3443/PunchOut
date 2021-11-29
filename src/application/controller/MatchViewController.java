@@ -6,8 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 
-public class MatchViewController extends BaseController{
-	
+public class MatchViewController extends BaseController {
+
 	@FXML
 	ImageView joeCenter;
 	@FXML
@@ -16,11 +16,6 @@ public class MatchViewController extends BaseController{
 	ImageView macRight;
 	@FXML
 	ImageView macLeft;
-	
-	public MatchViewController()
-	{
-		Main.setActiveController(this);
-	}
 	
 	public void initialize()
 	{
@@ -58,31 +53,16 @@ public class MatchViewController extends BaseController{
 	}
 
 	@Override
-	public void onKeyPress(KeyEvent event) 
-	{
-
-		/*
-		switch(event.getCode())
-		{
-		case LEFT:  System.out.println("Left\n");
-					macCenter.setVisible(false);
-					macLeft.setVisible(true);
-					macRight.setVisible(false);
-					break;
-		case RIGHT: System.out.println("Right\n");
-					macCenter.setVisible(false);
-					macLeft.setVisible(false);
-					macRight.setVisible(true);
-					break;
-		case UP: 	System.out.println("Center\n");
-					macCenter.setVisible(true);
-					macLeft.setVisible(false);
-					macRight.setVisible(false);
-					break;
-		default:
-					break;
+	public void handle(KeyEvent event) {
+		
+		
+		switch (event.getCode()) {
+		
+			default:
+				System.out.println(event);
 		}
-		*/
 	}
+
+	
 	
 }

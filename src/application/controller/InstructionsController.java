@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 
 public class InstructionsController extends BaseController
 {
@@ -23,20 +24,24 @@ public class InstructionsController extends BaseController
 	
 	public void toMatchView()
 	{
-		   
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/MatchView.fxml"));
-			Main.stage.setScene(new Scene(root, 800,800));
-			Main.stage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		Main.setView("view/MatchView.fxml");
+//		try {
+//			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MatchView.fxml"));
+//			
+//			loader.getController()
+//			Parent root = FXMLLoader.load(getClass().getResource("../view/MatchView.fxml"));
+//			
+//			Main.stage.setScene(new Scene(root, 800,800));
+//			Main.stage.show();
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	public void toMainMenu()
 	{
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
 			Main.stage.setScene(new Scene(root, 800,800));
 			Main.stage.show();
 		} catch(Exception e) {
