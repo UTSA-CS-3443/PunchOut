@@ -9,5 +9,5 @@ public abstract class BaseController {
 	
 	public abstract void update(long nanoSeconds);
 
-	public abstract void onKeyPress(KeyEvent event);
+	public void onKeyPress(KeyEvent event) {};
 }
