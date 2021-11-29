@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.InstructionsController">
+   <children>
+      <AnchorPane layoutX="-3.0" layoutY="-3.0" prefHeight="800.0" prefWidth="800.0">
+         <children>
+            <Pane layoutX="3.0" prefHeight="801.0" prefWidth="797.0">
+               <children>
+                  <Label layoutX="275.0" layoutY="46.0" text="Instructions">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="420.0" layoutY="744.0" mnemonicParsing="false" onAction="#toMatchView" text="Continue" />
+                  <Button layoutX="343.0" layoutY="744.0" mnemonicParsing="false" onAction="#toMainMenu" text="Back" />
+                  <Label fx:id="instructField" layoutX="213.0" layoutY="194.0" prefHeight="413.0" prefWidth="371.0" />
+               </children></Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

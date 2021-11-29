@@ -8,15 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.input.KeyEvent;
 
 
 public class Main extends Application {
 	
-	private static Stage stage;
+	public static Stage stage;
+	public static Scene scene;
 	
-	private BaseController activeController = new TitleScreenController();
+	public static BaseController activeController = new TitleScreenController();
 	
 	/**
 	 * Static method that shows the given scene on the main stage
@@ -38,7 +38,7 @@ public class Main extends Application {
 		try {
 			stage = primaryStage;
 			Parent root = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
-			Scene scene = new Scene(root,800,800);
+			scene = new Scene(root,800,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -64,6 +64,14 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void setActiveController(BaseController tempController)
+	{
+		activeController = tempController;
+		scene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
+			activeController.onKeyPress(key);
+		});
 	}
 	
 	public static void main(String[] args) {
