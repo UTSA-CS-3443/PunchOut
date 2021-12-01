@@ -2,6 +2,9 @@ package application.controller;
 
 import application.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
@@ -51,15 +54,31 @@ public class MatchViewController extends BaseController {
 		macRight.setVisible(false);
 		macLeft.setVisible(true);
 	}
+	
+	public void toMainMenu()
+	{
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
+			Main.stage.setScene(new Scene(root, 800,800));
+			Main.stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void handle(KeyEvent event) {
 		
-		
-		switch (event.getCode()) {
-		
-			default:
-				System.out.println(event);
+		switch(event.getCode())
+		{
+		case A:  	setMacLeft();
+					break;
+		case D: 	setMacRight();
+					break;
+		case W: 	setMacCenter();
+					break;
+		default:
+					break;
 		}
 	}
 

@@ -20,7 +20,7 @@
                   </Label>
                   <Button layoutX="420.0" layoutY="744.0" mnemonicParsing="false" onAction="#toMatchView" text="Continue" />
                   <Button layoutX="343.0" layoutY="744.0" mnemonicParsing="false" onAction="#toMainMenu" text="Back" />
-                  <Label fx:id="instructField" layoutX="213.0" layoutY="194.0" prefHeight="413.0" prefWidth="371.0" />
+                  <Label fx:id="instructField" layoutX="109.0" layoutY="116.0" prefHeight="590.0" prefWidth="623.0" />
                </children></Pane>
          </children>
       </AnchorPane>

@@ -31,7 +31,7 @@ public class TitleScreenController extends BaseController {
 	
 	public void initialize()
 	{
-		music();
+		//music();
 	}
 	
 	@Override
@@ -41,6 +41,7 @@ public class TitleScreenController extends BaseController {
 	
 	public void newGame()
 	{
+		
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../view/Instructions.fxml"));
 			Main.stage.setScene(new Scene(root, 800,800));
