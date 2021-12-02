@@ -25,7 +25,7 @@ public class Main extends Application {
 	
 	public static BaseController activeController = new TitleScreenController();
 	
-	String songLoc = "src/ST.wav";
+	String songLoc = "src/EOT.mp3";
 	Media media = new Media(Paths.get(songLoc).toUri().toString());
 	AudioClip mediaPlayer = new AudioClip(media.getSource());
 	

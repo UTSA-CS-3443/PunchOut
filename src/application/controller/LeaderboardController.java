@@ -34,8 +34,8 @@ public class LeaderboardController extends BaseController{
 		.collect(Collectors.toList());
 		
 		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i <= scores.size(); ++i) {
-			sb.append(String.format("%d. %s\n", i, scores.get(i).toString()));
+		for (int i = 0; i < scores.size(); ++i) {
+			sb.append(String.format("%d. %s\n", i + 1, scores.get(i).toString()));
 		}
 		
 		leaderboardLabel.setText(sb.toString());

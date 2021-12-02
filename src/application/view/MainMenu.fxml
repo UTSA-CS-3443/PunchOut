@@ -22,12 +22,5 @@
          <image>
             <Image url="@Punch-Out_series_logo.png" />
          </image></ImageView>
-      <Label layoutX="309.0" layoutY="651.0" text="Volume Controls" visible="false">
-         <font>
-            <Font name="Comic Sans MS" size="24.0" />
-         </font>
-      </Label>
-      <Button layoutX="417.0" layoutY="723.0" mnemonicParsing="false" onAction="#volDown" text="Down" visible="false" />
-      <Button layoutX="332.0" layoutY="723.0" mnemonicParsing="false" onAction="#volUp" prefHeight="25.0" prefWidth="47.0" text="Up" visible="false" />
    </children>
 </AnchorPane>
