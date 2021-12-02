@@ -11,10 +11,13 @@ import java.util.List;
  */
 public class ScoreData {
 	
-	public static ScoreData PLAYER_SCORE;
+	public static ScoreData PLAYER_SCORE = new ScoreData();
+	
 	
 	private String username = "Player";
 	private int wins = 0;
+	
+	public ScoreData() {}
 	
 	/**
 	 * @param String username
