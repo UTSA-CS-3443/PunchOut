@@ -3,21 +3,23 @@
  */
 package application.model;
 
-import java.util.*;
+import java.util.List;
 
 /**
- * @author cassidybaskerville
- *
+ * @author Grandma's Buttermilk Cookies
+ * Model for the score data
  */
 public class ScoreData {
 	
-	public static ScoreData PLAYER_SCORE = new ScoreData();
+	public static ScoreData PLAYER_SCORE;
 	
 	private String username = "Player";
 	private int wins = 0;
 	
-	public ScoreData() {}
-	
+	/**
+	 * @param String username
+	 * @param int wins
+	 */
 	public ScoreData(String username, int wins) {
 		this.username = username;
 		this.wins = wins;

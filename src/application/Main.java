@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 
@@ -25,7 +23,7 @@ public class Main extends Application {
 	
 	public static BaseController activeController = new TitleScreenController();
 	
-	String songLoc = "src/EOT.mp3";
+	String songLoc = "src/data/music/EOT.mp3";
 	Media media = new Media(Paths.get(songLoc).toUri().toString());
 	AudioClip mediaPlayer = new AudioClip(media.getSource());
 	
@@ -47,38 +45,24 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		INSTANCE = this;
-//		music();
-		try {
-			stage = primaryStage;
-			Parent root = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
-			Scene scene = new Scene(root,800,800);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			scene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
-				activeController.handle(key);
-			});
-			/**
-			 * This is the main game loop.
-			 * The active view controller should be referenced in this main class and that controller's update method
-			 * will be called from here.
-			 */
-			new AnimationTimer() {
+		stage = primaryStage;
+		Main.setView("view/MainMenu.fxml");
+		/**
+		 * This is the main game loop.
+		 * The active view controller should be referenced in this main class and that controller's update method
+		 * will be called from here.
+		 */
+		new AnimationTimer() {
 
-				/**
-				 * @param now: time in nanoseconds
-				 */
-				@Override
-				public void handle(long now) {
-					activeController.update(now);
-				}
-				
-			}.start();
+			/**
+			 * @param now: time in nanoseconds
+			 */
+			@Override
+			public void handle(long now) {
+				activeController.update(now);
+			}
 			
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		}.start();
 	}
 	
 	public static void setView(String fxml) {
@@ -93,6 +77,9 @@ public class Main extends Application {
 			scene.addEventHandler(KeyEvent.KEY_PRESSED, controller);
 			Main.stage.setScene(scene);
 			Main.stage.show();
+			scene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
+				activeController.handle(key);
+			});
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

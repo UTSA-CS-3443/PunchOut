@@ -2,13 +2,11 @@ package application.controller;
 
 import application.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 /**
+ * @author Grandma's Buttermilk Cookies
  * Controller for the title screen
  */
 public class TitleScreenController extends BaseController {
@@ -21,39 +19,17 @@ public class TitleScreenController extends BaseController {
 	@FXML
 	private Button continueBtn;
 	
-	@Override
 	public void update(long nanoSeconds) {
 		
 	}
 	
 	public void newGame()
 	{
-		
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/Instructions.fxml"));
-			Main.stage.setScene(new Scene(root, 800,800));
-			Main.stage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		Main.setView("view/Instructions.fxml");
 	}
 	
 	public void toLeaderboard()
 	{
-//		try {
-//			Parent root = FXMLLoader.load(getClass().getResource("../view/Leaderboard.fxml"));
-//			Main.stage.setScene(new Scene(root, 800,800));
-//			Main.stage.show();
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
-		
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/save_score_view.fxml"));
-			Main.stage.setScene(new Scene(root, 800,800));
-			Main.stage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		Main.setView("view/SaveScore.fxml");
 	}
 }

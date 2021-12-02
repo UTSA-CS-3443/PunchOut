@@ -12,15 +12,14 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
- * @author cassidybaskerville
+ * @author Grandma's Buttermilk Cookies
+ * Model for the storage or player scores
  */
 public final class PersistentStorageSingleton {
 	
 	private static final String dataFolder = "src/data";
 	
 	private static final String highScoresFile = "high_scores.csv";
-	
-	private PersistentStorageSingleton() {}
 	
 	private static PersistentStorageSingleton INSTANCE = null;
 	
@@ -46,7 +45,6 @@ public final class PersistentStorageSingleton {
 			out.write("\n" + score.getData());
 			
 			out.close();
-			System.out.printf("Saved score for %s\n", score.getUsername());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

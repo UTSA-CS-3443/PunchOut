@@ -5,13 +5,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
+ * @author Grandma's Buttermilk Cookies
  * This class can be inherited by the player and the enemy npc
  */
 public abstract class Sprite {
 
 	protected Image image;
-
-	protected int health = 100;
 	
 	protected double posX = 0;
 	protected double posY = 0;

@@ -25,8 +25,12 @@ import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-
-public class MatchViewController extends BaseController {
+/**
+ * 
+ * @author view/Leaderboard.fxml
+ * Controller for the Match view
+ */
+public class MatchController extends BaseController {
 
 	@FXML
 	ImageView joeCenter;
@@ -49,14 +53,18 @@ public class MatchViewController extends BaseController {
 	@FXML
 	Label actionLabel;
 	
-	String songLoc2 = "src/Punch.mp3";
+	String songLoc2 = "src/data/music/Punch.mp3";
 	Media media2 = new Media(Paths.get(songLoc2).toUri().toString());
 	AudioClip mediaPlayer2 = new AudioClip(media2.getSource());
+	
 	boolean block;
 	int aiAction;
+	
 	private static final Integer STARTTIME = 60;
     private Timeline timeline;
     private IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
+    
+    BigDecimal progress = new BigDecimal(String.format("%.2f",1.0));
     
     public void countDown(){
         timeLabel.textProperty().bind(timeSeconds.asString());
@@ -79,20 +87,11 @@ public class MatchViewController extends BaseController {
     	countDown();
     }
 	
-	BigDecimal progress = new BigDecimal(String.format("%.2f",1.0));
-	
     public void initialize(URL arg0, ResourceBundle arg1) {
 
         healthPlayer1.setStyle("-fx-accent: #00FF00;");
         healthPlayer2.setStyle("-fx-accent: #00FF00;");
 
-    }
-
-    public void progess() {
-
-    	progress = new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.1));
-        healthPlayer1.setProgress(progress.doubleValue());
-        healthPlayer2.setProgress(progress.doubleValue());
     }
     
     public void drainPlayer1() {
@@ -105,10 +104,6 @@ public class MatchViewController extends BaseController {
     	progress = new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.1));
     	healthPlayer2.setProgress(progress.doubleValue());
     }
-    
-    public void progressHealth(ActionEvent event) {
-    	progess();
-    }
 	
 	public void initialize()
 	{
@@ -119,9 +114,7 @@ public class MatchViewController extends BaseController {
 		countDown();
 	}
 	
-	@Override
 	public void update(long nanoSeconds) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -161,7 +154,6 @@ public class MatchViewController extends BaseController {
 	{
 		if(macCenter.isVisible() == true && block == false)
 		{
-			System.out.println("User Punch");
 			actionLabel.setText("Rocky punches Drago!");
 			drainPlayer2();
 			mediaPlayer2.setVolume(1.0);
@@ -173,9 +165,9 @@ public class MatchViewController extends BaseController {
 		}
 	}
 	
-	public void enemyAI()
+	public int enemyAI()
 	{
-		aiAction = (int)(Math.random() * ((2)));
+		return (int)(Math.random() * ((2)));
 	}
 	
 	public void enemyPunch()
@@ -210,9 +202,9 @@ public class MatchViewController extends BaseController {
 					break;
 		case W: 	setMacCenter();
 					break;
-		case L:		userPunch();
+		case Z:		userPunch();
 					break;
-		case I:		enemyAI();
+		case I:		aiAction = enemyAI();
 					if(aiAction == 0)
 					{
 						enemyPunch();
