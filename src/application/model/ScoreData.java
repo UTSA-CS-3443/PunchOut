@@ -11,14 +11,16 @@ import java.util.*;
  */
 public class ScoreData {
 	
-	private String username;
-	private int score;
-	private String time;
+	public static ScoreData PLAYER_SCORE = new ScoreData();
 	
-	public ScoreData(String username, int score, String time) {
+	private String username = "Player";
+	private int wins = 0;
+	
+	public ScoreData() {}
+	
+	public ScoreData(String username, int wins) {
 		this.username = username;
-		this.score = score;
-		this.time = time;
+		this.wins = wins;
 	}
 	
 	/**
@@ -27,11 +29,10 @@ public class ScoreData {
 	public ScoreData(String commaSeperatedData) {
 		String[] tokens = commaSeperatedData.split(",");
 		
-		if (tokens.length < 3) return;
+		if (tokens.length < 2) return;
 		
 		this.username = tokens[0];
-		this.score = Integer.parseInt(tokens[1]);
-		this.time = tokens[2];
+		this.wins = Integer.parseInt(tokens[1]);
 	}
 	
 	/**
@@ -45,15 +46,14 @@ public class ScoreData {
 	 * This method saves the score to a file in the data folder
 	 */
 	public void saveToPersistentStorage() {
-		PersistentStorageSingleton storage = PersistentStorageSingleton.getInstance();
-		storage.saveScore(this);
+		PersistentStorageSingleton.getInstance().saveScore(this);
 	}
 	
 	/**
 	 * @return Data for csv
 	 */
 	public String getData() {
-		return String.format("%s,%d,%s", username, score, time);
+		return String.format("%s,%d", username, wins);
 	}
 	
 	/**
@@ -71,31 +71,22 @@ public class ScoreData {
 	}
 
 	/**
-	 * @return the score
+	 * @return the wins
 	 */
-	public int getScore() {
-		return score;
+	public Integer getWins() {
+		return wins;
 	}
 
 	/**
-	 * @param score the score to set
+	 * Increments wins
 	 */
-	public void setScore(int score) {
-		this.score = score;
+	public void win() {
+		this.wins++;
 	}
 
-	/**
-	 * @return the time
-	 */
-	public String getTime() {
-		return time;
-	}
-
-	/**
-	 * @param time the time to set
-	 */
-	public void setTime(String time) {
-		this.time = time;
+	@Override
+	public String toString() {
+		return String.format("%s : %d", this.username, this.wins);
 	}
 	
 	

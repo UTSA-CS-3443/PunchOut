@@ -19,7 +19,7 @@ import javafx.scene.media.Media;
 
 public class Main extends Application {
 	
-	private static Main INSTANCE;
+	public static Main INSTANCE;
 	
 	public static Stage stage;
 	
@@ -47,7 +47,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		INSTANCE = this;
-		music();
+//		music();
 		try {
 			stage = primaryStage;
 			Parent root = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
@@ -56,7 +56,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			scene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
-				activeController.onKeyPress(key);
+				activeController.handle(key);
 			});
 			/**
 			 * This is the main game loop.

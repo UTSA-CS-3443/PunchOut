@@ -18,6 +18,7 @@
             </Text>
             <TextField fx:id="usernameField" promptText="Username" />
             <Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#onSaveScore" text="Save" />
+            <Button fx:id="incWins" mnemonicParsing="false" onAction="#onIncrementWins" text="Cheat Code" />
          </children>
       </VBox>
    </children>

@@ -53,8 +53,16 @@ public class TitleScreenController extends BaseController {
 	
 	public void toLeaderboard()
 	{
+//		try {
+//			Parent root = FXMLLoader.load(getClass().getResource("../view/Leaderboard.fxml"));
+//			Main.stage.setScene(new Scene(root, 800,800));
+//			Main.stage.show();
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
+		
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/Leaderboard.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("../view/save_score_view.fxml"));
 			Main.stage.setScene(new Scene(root, 800,800));
 			Main.stage.show();
 		} catch(Exception e) {
