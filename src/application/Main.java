@@ -47,6 +47,7 @@ public class Main extends Application {
 		INSTANCE = this;
 		stage = primaryStage;
 		Main.setView("view/MainMenu.fxml");
+		music();
 		/**
 		 * This is the main game loop.
 		 * The active view controller should be referenced in this main class and that controller's update method

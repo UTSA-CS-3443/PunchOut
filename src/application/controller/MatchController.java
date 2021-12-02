@@ -12,9 +12,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -67,18 +64,18 @@ public class MatchController extends BaseController {
     BigDecimal progress = new BigDecimal(String.format("%.2f",1.0));
     
     public void countDown(){
+    	
         timeLabel.textProperty().bind(timeSeconds.asString());
         timeLabel.setTextFill(Color.RED);
         timeLabel.setStyle("-fx-font-size: 4em;");
 
-
-        if (timeline != null) {
-            timeline.stop();
-        }
-        timeSeconds.set(STARTTIME);
+        
         timeline = new Timeline();
+        timeSeconds.set(STARTTIME);
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(STARTTIME+1),new KeyValue(timeSeconds, 0)));
         timeline.playFromStart();
+        timeline.setOnFinished(e -> toGameOver());
+        
     }
     
     @FXML
@@ -141,13 +138,12 @@ public class MatchController extends BaseController {
 	
 	public void toMainMenu()
 	{
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
-			Main.stage.setScene(new Scene(root, 800,800));
-			Main.stage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		Main.setView("view/MainMenu.fxml");
+	}
+	
+	public void toGameOver()
+	{
+		Main.setView("view/GameOver.fxml");
 	}
 	
 	public void userPunch()
@@ -158,6 +154,10 @@ public class MatchController extends BaseController {
 			drainPlayer2();
 			mediaPlayer2.setVolume(1.0);
 			mediaPlayer2.play();
+			if(healthPlayer2.getProgress() <= 0)
+			{
+				Main.setView("view/SaveScore.fxml");
+			}
 		}
 		else
 		{
@@ -178,6 +178,11 @@ public class MatchController extends BaseController {
 			actionLabel.setText("Drago punches Rocky!");
 			mediaPlayer2.setVolume(1.0);
 			mediaPlayer2.play();
+			
+			if(healthPlayer1.getProgress() <= 0)
+			{
+				Main.setView("view/GameOver.fxml");
+			}
 		}
 		else
 		{
@@ -189,6 +194,20 @@ public class MatchController extends BaseController {
 	{
 		block = true;
 		actionLabel.setText("Drago raises his guard!");
+	}
+	
+	public void enemyAction()
+	{
+		aiAction = enemyAI();
+		if(aiAction == 0)
+		{
+			enemyPunch();
+			block = false;
+		}
+		else if(aiAction == 1)
+		{
+			enemyBlock();
+		}
 	}
 
 	@Override
@@ -215,7 +234,7 @@ public class MatchController extends BaseController {
 						enemyBlock();
 					}
 					break;
-		default:
+		default:	
 					break;
 		}
 	}

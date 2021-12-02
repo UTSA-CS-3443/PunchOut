@@ -23,5 +23,4 @@ What we have implemented:
 What we have not implemented: 
 
  - Ending the game when the timer runs out.
- - Sending to save score screen when health reaches 0.
  - Simulating enemy punches automatically (currently must press I to make Drago punch).
