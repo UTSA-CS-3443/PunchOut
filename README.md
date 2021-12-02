@@ -1,5 +1,11 @@
 # PunchOut
 
+### CLONING
+To clone: `git clone https://github.com/UTSA-CS-3443/PunchOut.git`
+
+### RUNNING
+To run the application in Eclipse simply navigate to `src/application/Main` and right click -> Run As -> Java Application.
+
 ### DESCRIPTION
 We are Grandma's Buttermilk Cookies and our project is: PunchOut.
 
@@ -14,7 +20,7 @@ What we have implemented:
  - A and D keys move the player sprite.
  - All views navigate properly.
 
-What have not implemented: 
+What we have not implemented: 
 
  - Ending the game when the timer runs out.
  - Sending to save score screen when health reaches 0.
