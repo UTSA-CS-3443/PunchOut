@@ -5,6 +5,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import application.Main;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -54,11 +55,13 @@ public class MatchController extends BaseController {
 	Media media2 = new Media(Paths.get(songLoc2).toUri().toString());
 	AudioClip mediaPlayer2 = new AudioClip(media2.getSource());
 	
+	
 	boolean block;
 	int aiAction;
 	
 	private static final Integer STARTTIME = 60;
-    private Timeline timeline;
+    private Timeline timeline = new Timeline();
+    private Timeline enemyPunching = new Timeline();
     private IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     
     BigDecimal progress = new BigDecimal(String.format("%.2f",1.0));
@@ -68,9 +71,7 @@ public class MatchController extends BaseController {
         timeLabel.textProperty().bind(timeSeconds.asString());
         timeLabel.setTextFill(Color.RED);
         timeLabel.setStyle("-fx-font-size: 4em;");
-
         
-        timeline = new Timeline();
         timeSeconds.set(STARTTIME);
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(STARTTIME+1),new KeyValue(timeSeconds, 0)));
         timeline.playFromStart();
@@ -78,10 +79,15 @@ public class MatchController extends BaseController {
         
     }
     
-    @FXML
-    void fight(ActionEvent event)
+    
+    public void fight()
     {
+    	enemyPunching.getKeyFrames().add(new KeyFrame(Duration.seconds(2),
+    			e -> enemyAction()));
+    	enemyPunching.setCycleCount(60);
+    	enemyPunching.play();
     	countDown();
+    	
     }
 	
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -108,7 +114,7 @@ public class MatchController extends BaseController {
 		macCenter.setVisible(true);
 		macRight.setVisible(false);
 		macLeft.setVisible(false);
-		countDown();
+		fight();
 	}
 	
 	public void update(long nanoSeconds) {
@@ -143,7 +149,16 @@ public class MatchController extends BaseController {
 	
 	public void toGameOver()
 	{
+		timeline.stop();
+		enemyPunching.stop();
 		Main.setView("view/GameOver.fxml");
+	}
+	
+	public void toSaveScore()
+	{
+		timeline.stop();
+		enemyPunching.stop();
+		Main.setView("view/SaveScore.fxml");
 	}
 	
 	public void userPunch()
@@ -156,7 +171,7 @@ public class MatchController extends BaseController {
 			mediaPlayer2.play();
 			if(healthPlayer2.getProgress() <= 0)
 			{
-				Main.setView("view/SaveScore.fxml");
+				toSaveScore();
 			}
 		}
 		else
@@ -181,7 +196,7 @@ public class MatchController extends BaseController {
 			
 			if(healthPlayer1.getProgress() <= 0)
 			{
-				Main.setView("view/GameOver.fxml");
+				toGameOver();
 			}
 		}
 		else
@@ -223,17 +238,17 @@ public class MatchController extends BaseController {
 					break;
 		case Z:		userPunch();
 					break;
-		case I:		aiAction = enemyAI();
-					if(aiAction == 0)
-					{
-						enemyPunch();
-						block = false;
-					}
-					else if(aiAction == 1)
-					{
-						enemyBlock();
-					}
-					break;
+//		case I:		aiAction = enemyAI();
+//					if(aiAction == 0)
+//					{
+//						enemyPunch();
+//						block = false;
+//					}
+//					else if(aiAction == 1)
+//					{
+//						enemyBlock();
+//					}
+//					break;
 		default:	
 					break;
 		}

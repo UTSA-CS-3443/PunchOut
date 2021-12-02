@@ -19,8 +19,12 @@ What we have implemented:
  - Music and sound for punching.
  - A and D keys move the player sprite.
  - All views navigate properly.
+ - Ending the game when the timer runs out.
+ - Sending to save score screen when health reaches 0.
+ - Simulating enemy punches automatically.
 
 What we have not implemented: 
-
- - Ending the game when the timer runs out.
- - Simulating enemy punches automatically (currently must press I to make Drago punch).
+- New sprites.
+ 
+ 
+ 
